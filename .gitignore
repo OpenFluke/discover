@@ -1,0 +1,5 @@
+# .gitignore
+*.exe
+*.test
+*.out
+vendor/
