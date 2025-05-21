@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"sort"
+	"strings"
 )
 
 // --------- PLANET AND SPAWN UTILITIES ---------
@@ -125,4 +126,15 @@ func OutwardNormal(center, point []float64) []float64 {
 		return []float64{0, 1, 0}
 	}
 	return []float64{v[0] / mag, v[1] / mag, v[2] / mag}
+}
+
+func GenerateUnitID(role string, domain string, gen int, version int) string {
+	domainParts := strings.Split(domain, ".")
+	projectCode := ""
+	for _, part := range domainParts {
+		if len(part) > 0 {
+			projectCode += strings.ToUpper(string(part[0]))
+		}
+	}
+	return fmt.Sprintf("[%s]-%s-gen%d-v%d", strings.ToUpper(role), projectCode, gen, version)
 }
